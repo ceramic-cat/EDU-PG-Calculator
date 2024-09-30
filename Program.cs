@@ -44,7 +44,7 @@ namespace Calculator
                 { keepRunning = false;
                     Console.WriteLine("Hejdå!");
                 }
-
+                Console.Clear();
 
             }
 
@@ -104,7 +104,7 @@ namespace Calculator
                         case "+": return calculator.FirstValue + calculator.SecondValue;
                         case "-": return calculator.FirstValue - calculator.SecondValue;
                         case "*": return calculator.FirstValue * calculator.SecondValue;
-                        case "/": return calculator.FirstValue / calculator.SecondValue;
+                        case "/": return calculator.SecondValue / calculator.FirstValue;
                             default: return 0;
                     }
 
