@@ -31,11 +31,6 @@
             // Metod för inmatning av operationer, valbara med char? Eller ur meny?
 
 
-
-
-
-
-
         }
         class Calculator
         {
@@ -55,8 +50,7 @@
 
             // Lista eller dictionary med olika operatorer
 
-            // 
-
+            public string[] operatorValues = { "+", "-", "*", "/", "Sqrt", "PowerTo" };
 
         }
 
