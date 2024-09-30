@@ -11,14 +11,6 @@ namespace Calculator
         {
             Console.WriteLine("Hello, World!");
 
-
-
-            // Lets make a calculator shall we
-
-            // Uppgift bas: Gör mkt enkelt program och gör div git-grejer med det
-
-
-            // Lets do a calculator
             bool keepRunning = true;
             while (keepRunning)
             {
@@ -85,8 +77,6 @@ namespace Calculator
                     return userOperator;
                 }
             }
-
-
         }
 
 
