@@ -22,27 +22,39 @@ namespace Calculator
                 Console.WriteLine("\tWelcome to the calculator.");
                 Console.WriteLine("\n\tPlease enter a number:");
 
-                float userFirstNumber = float.Parse(Console.ReadLine());
+                // Getting first value
+                if (float.TryParse(Console.ReadLine(), out float userFirstNumber))
+                {
+                    Console.WriteLine("\n\tPlease enter a number: ");
 
+                    if (float.TryParse(Console.ReadLine(), out float userSecondNumber))
+                    {
+                        Console.WriteLine("\n\t What operator would you like to use?");
+                        string userOperator = Console.ReadLine();
 
-                Console.WriteLine("\n\tPlease enter a number:");
+                        // Control the input for choice of operator.
+                        if (Calculator.OperatorValues.Contains(userOperator))
+                        {
+                        // Make a calculator
+                        Calculator userCalculator = new Calculator(userSecondNumber, userFirstNumber, userOperator);
 
-                float userSecondNumber = float.Parse(Console.ReadLine());
+                        Console.WriteLine($"Svaret på din input är {userCalculator.DoMath(userCalculator)}");
+                        }
 
-                Console.WriteLine("\n\t What operator would you like to use?");
-                string userOperator = Console.ReadLine();
+                    }
 
-                // Make a calculator
-                Calculator userCalculator = new Calculator(userSecondNumber, userFirstNumber, userOperator);
-
-                Console.WriteLine($"Svaret på din input är {userCalculator.DoMath(userCalculator)}");
-
-                Console.WriteLine("Om du är klar, skriv Klar. Annars, skriv vad som helst. ");
+                }
+                else
+                {
+                    Console.WriteLine("Invalid input, please only use and valid operators.");
+                }
+                Console.WriteLine("If you want to try again, please input the word again. Write anything else to turn off the application. ");
                 string userInput = Console.ReadLine().ToLower();
 
-                if (userInput == "klar")
-                { keepRunning = false;
-                    Console.WriteLine("Hejdå!");
+                if (userInput == "again")
+                {
+                    keepRunning = false;
+                    Console.WriteLine("Good bye!");
                 }
                 Console.Clear();
 
@@ -80,12 +92,12 @@ namespace Calculator
 
             //}
 
-            public Calculator(float firstValue, string operatorValue, float secondValue)
-            {
-                FirstValue = firstValue;
-                SecondValue = secondValue;
-                Operator = operatorValue;
-            }
+            //public Calculator(float firstValue, string operatorValue, float secondValue)
+            //{
+            //    FirstValue = firstValue;
+            //    SecondValue = secondValue;
+            //    Operator = operatorValue;
+            //}
 
             public Calculator(float firstValue, float secondValue, string operatorValue)
             {
@@ -99,13 +111,13 @@ namespace Calculator
                 string hello = calculator.Operator;
                 if (OperatorValues.Contains(hello))
                 {
-                    switch(calculator.Operator)
-                        {
+                    switch (calculator.Operator)
+                    {
                         case "+": return calculator.FirstValue + calculator.SecondValue;
                         case "-": return calculator.FirstValue - calculator.SecondValue;
                         case "*": return calculator.FirstValue * calculator.SecondValue;
                         case "/": return calculator.SecondValue / calculator.FirstValue;
-                            default: return 0;
+                        default: return 0;
                     }
 
                 }
