@@ -35,18 +35,23 @@ namespace Calculator
                         // Control the input for choice of operator.
                         if (Calculator.OperatorValues.Contains(userOperator))
                         {
-                        // Make a calculator
-                        Calculator userCalculator = new Calculator(userSecondNumber, userFirstNumber, userOperator);
+                            // Make a calculator
+                            Calculator userCalculator = new Calculator(userSecondNumber, userFirstNumber, userOperator);
 
-                        Console.WriteLine($"Svaret på din input är {userCalculator.DoMath(userCalculator)}");
+                            Console.WriteLine($"Svaret på din input är {userCalculator.DoMath(userCalculator)}");
+                        }
+                        else
+                        {
+                            Console.WriteLine("Please only use valid operators: +, -, * or /.");
                         }
 
                     }
+                    else Console.WriteLine("Please only use numbers.");
 
                 }
                 else
                 {
-                    Console.WriteLine("Invalid input, please only use and valid operators.");
+                    Console.WriteLine("Please only use numbers.");
                 }
                 Console.WriteLine("If you want to try again, please input the word again. Write anything else to turn off the application. ");
                 string userInput = Console.ReadLine().ToLower();
