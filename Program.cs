@@ -53,8 +53,9 @@
 
             }
 
-            // Lista eller dictionary med olika operatorer?
+            // Lista eller dictionary med olika operatorer
 
+            // 
 
 
         }
