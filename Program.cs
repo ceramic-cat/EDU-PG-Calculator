@@ -40,14 +40,28 @@
 
             public float FirstValue { get; private set; }
             public float SecondValue { get; private set; }
-            public float Operator { get; private set; }
+            public string Operator { get; private set; }
 
 
-            public Calculator()
+            //public Calculator(string operatorValue)
+            //{
+                
+            //}
+
+            public Calculator( float firstValue, string operatorValue, float secondValue)
             {
-
+                FirstValue = firstValue;
+                SecondValue = secondValue;
+                Operator = operatorValue;
             }
 
+            public Calculator (float firstValue, float secondValue, string operatorValue)
+            {
+                FirstValue = firstValue;
+                SecondValue = secondValue;
+                Operator = operatorValue;
+
+            }
             // Lista eller dictionary med olika operatorer
 
             public string[] operatorValues = { "+", "-", "*", "/", "Sqrt", "PowerTo" };
