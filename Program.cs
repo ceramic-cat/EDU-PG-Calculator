@@ -1,4 +1,7 @@
 ﻿using System.Net.Http.Headers;
+using System.Reflection.Metadata.Ecma335;
+using System.Runtime.Intrinsics.Arm;
+using System.Security.Cryptography.X509Certificates;
 
 namespace Calculator
 {
@@ -22,15 +25,24 @@ namespace Calculator
                 Console.WriteLine("Welcome to the calculator.");
                 Console.WriteLine("Please enter a number:");
 
+                float userFirstNumber;
+                float userSecondNumber;
+                string userOperator;
+
+
+
+                userFirstNumber = getNumber();
+                break;
+
                 // Getting first value
-                if (float.TryParse(Console.ReadLine(), out float userFirstNumber))
+                if (float.TryParse(Console.ReadLine(), out userFirstNumber))
                 {
                     Console.WriteLine("Please enter a number: ");
 
-                    if (float.TryParse(Console.ReadLine(), out float userSecondNumber))
+                    if (float.TryParse(Console.ReadLine(), out userSecondNumber))
                     {
                         Console.WriteLine("What operator would you like to use?");
-                        string userOperator = Console.ReadLine();
+                        userOperator = Console.ReadLine();
 
                         // Control the input for choice of operator.
                         if (Calculator.OperatorValues.Contains(userOperator))
@@ -64,7 +76,29 @@ namespace Calculator
                 }
                 Console.Clear();
 
+
+
+                float getNumber()
+                {
+                    float number = 0;
+                    bool input = false;
+
+                    do
+                    {
+                        Console.WriteLine("ge mmig en siffra");
+                        input = float.TryParse(Console.ReadLine(), out number);
+                        //if (input)
+                        //    number = value;
+
+                    }
+                    while (!input);
+
+                    return number;
+                }
             }
+
+
+
 
 
             // TODO
