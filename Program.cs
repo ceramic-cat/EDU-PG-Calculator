@@ -19,17 +19,17 @@ namespace Calculator
             bool keepRunning = true;
             while (keepRunning)
             {
-                Console.WriteLine("\tWelcome to the calculator.");
-                Console.WriteLine("\n\tPlease enter a number:");
+                Console.WriteLine("Welcome to the calculator.");
+                Console.WriteLine("Please enter a number:");
 
                 // Getting first value
                 if (float.TryParse(Console.ReadLine(), out float userFirstNumber))
                 {
-                    Console.WriteLine("\n\tPlease enter a number: ");
+                    Console.WriteLine("Please enter a number: ");
 
                     if (float.TryParse(Console.ReadLine(), out float userSecondNumber))
                     {
-                        Console.WriteLine("\n\t What operator would you like to use?");
+                        Console.WriteLine("What operator would you like to use?");
                         string userOperator = Console.ReadLine();
 
                         // Control the input for choice of operator.
@@ -38,7 +38,7 @@ namespace Calculator
                             // Make a calculator
                             Calculator userCalculator = new Calculator(userSecondNumber, userFirstNumber, userOperator);
 
-                            Console.WriteLine($"Svaret på din input är {userCalculator.DoMath(userCalculator)}");
+                            Console.WriteLine($"The answer to your query is {userCalculator.DoMath(userCalculator)}");
                         }
                         else
                         {
@@ -53,10 +53,11 @@ namespace Calculator
                 {
                     Console.WriteLine("Please only use numbers.");
                 }
-                Console.WriteLine("If you want to try again, please input the word again. Write anything else to turn off the application. ");
+                Console.WriteLine("If you want to terminate the application, write exit.");
+                Console.WriteLine("To try again, write anything else.");
                 string userInput = Console.ReadLine().ToLower();
 
-                if (userInput == "again")
+                if (userInput == "exit")
                 {
                     keepRunning = false;
                     Console.WriteLine("Good bye!");
