@@ -35,6 +35,15 @@ namespace Calculator
                 // Make a calculator
                 Calculator userCalculator = new Calculator(userSecondNumber, userFirstNumber, userOperator);
 
+                Console.WriteLine($"Svaret på din input är {userCalculator.DoMath(userCalculator)}");
+
+                Console.WriteLine("Om du är klar, skriv Klar. Annars, skriv vad som helst. ");
+                string userInput = Console.ReadLine().ToLower();
+
+                if (userInput == "klar")
+                { keepRunning = false;
+                    Console.WriteLine("Hejdå!");
+                }
 
 
             }
@@ -85,7 +94,7 @@ namespace Calculator
                 Operator = operatorValue;
             }
 
-            public static float DoMath(Calculator calculator)
+            public float DoMath(Calculator calculator)
             {
                 string hello = calculator.Operator;
                 if (OperatorValues.Contains(hello))
