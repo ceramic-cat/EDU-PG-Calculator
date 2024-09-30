@@ -1,4 +1,6 @@
-﻿namespace Calculator
+﻿using System.Net.Http.Headers;
+
+namespace Calculator
 {
     internal class Program
     {
@@ -13,10 +15,29 @@
             // Uppgift bas: Gör mkt enkelt program och gör div git-grejer med det
 
 
-            // Lets do a calculatoooor
+            // Lets do a calculator
+            bool keepRunning = true;
+            while (keepRunning)
+            {
+                Console.WriteLine("\tWelcome to the calculator.");
+                Console.WriteLine("\n\tPlease enter a number:");
 
-            // Nästa uppgift: "Grafiskt interface"
+                float userFirstNumber = float.Parse(Console.ReadLine());
 
+
+                Console.WriteLine("\n\tPlease enter a number:");
+
+                float userSecondNumber = float.Parse(Console.ReadLine());
+
+                Console.WriteLine("\n\t What operator would you like to use?");
+                string userOperator = Console.ReadLine();
+
+                // Make a calculator
+                Calculator userCalculator = new Calculator(userSecondNumber, userFirstNumber, userOperator);
+
+
+
+            }
 
 
             // TODO
@@ -32,6 +53,8 @@
 
 
         }
+
+
         class Calculator
         {
             //private float _firstValue;
@@ -42,29 +65,44 @@
             public float SecondValue { get; private set; }
             public string Operator { get; private set; }
 
-
+            public static List<string> OperatorValues { get; private set; } = new List<string> { "+", "-", "*", "/" };
             //public Calculator(string operatorValue)
             //{
-                
+
             //}
 
-            public Calculator( float firstValue, string operatorValue, float secondValue)
+            public Calculator(float firstValue, string operatorValue, float secondValue)
             {
                 FirstValue = firstValue;
                 SecondValue = secondValue;
                 Operator = operatorValue;
             }
 
-            public Calculator (float firstValue, float secondValue, string operatorValue)
+            public Calculator(float firstValue, float secondValue, string operatorValue)
             {
                 FirstValue = firstValue;
                 SecondValue = secondValue;
                 Operator = operatorValue;
-
             }
-            // Lista eller dictionary med olika operatorer
 
-            public string[] operatorValues = { "+", "-", "*", "/", "Sqrt", "PowerTo" };
+            public static float DoMath(Calculator calculator)
+            {
+                string hello = calculator.Operator;
+                if (OperatorValues.Contains(hello))
+                {
+                    switch(calculator.Operator)
+                        {
+                        case "+": return calculator.FirstValue + calculator.SecondValue;
+                        case "-": return calculator.FirstValue - calculator.SecondValue;
+                        case "*": return calculator.FirstValue * calculator.SecondValue;
+                        case "/": return calculator.FirstValue / calculator.SecondValue;
+                            default: return 0;
+                    }
+
+                }
+                else
+                { return 0; }
+            }
 
         }
 
