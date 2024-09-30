@@ -18,62 +18,57 @@ namespace Calculator
                 float userSecondNumber;
                 string userOperator;
 
-                while (keepRunning)
+                userFirstNumber = GetNumber();
+                userSecondNumber = GetNumber();
+                userOperator = GetOperator();
+
+                Calculator userCalculator = new Calculator(userFirstNumber, userSecondNumber, userOperator);
+
+                Console.WriteLine($"The answer to your query is {userCalculator.DoMath()}.");
+
+                Console.WriteLine("If you want to terminate the application, write EXIT.");
+                Console.WriteLine("To try again, write anything else.");
+                string userInput = Console.ReadLine().ToLower();
+
+                if (userInput == "exit")
                 {
-
-                    userFirstNumber = GetNumber();
-                    userSecondNumber = GetNumber();
-                    userOperator = GetOperator();
-
-                    Calculator userCalculator = new Calculator(userFirstNumber, userSecondNumber, userOperator);
-
-                    Console.WriteLine($"The answer to your query is {userCalculator.DoMath()}.");
-
-                    Console.WriteLine("If you want to terminate the application, write EXIT.");
-                    Console.WriteLine("To try again, write anything else.");
-                    string userInput = Console.ReadLine().ToLower();
-
-                    if (userInput == "exit")
-                    {
-                        keepRunning = false;
-                        Console.WriteLine("Good bye!");
-                    }
-                    Console.Clear();
+                    keepRunning = false;
+                    Console.WriteLine("Good bye!");
                 }
+                Console.Clear();
+            }
 
+            float GetNumber()
+            {
+                float number = 0;
+                bool input = false;
 
-                float GetNumber()
+                do
                 {
-                    float number = 0;
-                    bool input = false;
+                    Console.WriteLine("Please input a number: ");
+                    input = float.TryParse(Console.ReadLine(), out number);
 
-                    do
-                    {
-                        Console.WriteLine("Please input a number: ");
-                        input = float.TryParse(Console.ReadLine(), out number);
-
-                    }
-                    while (!input);
-
-                    return number;
                 }
+                while (!input);
+
+                return number;
+            }
 
 
-                string GetOperator()
+            string GetOperator()
+            {
+                string userOperator;
+                bool input = false;
+
+                do
                 {
-                    string userOperator;
-                    bool input = false;
-
-                    do
-                    {
-                        Console.WriteLine("Please input a mathematical operator (+, -, * or /)");
-                        userOperator = Console.ReadLine();
-                        input = Calculator.OperatorValues.Contains(userOperator);
-                    }
-                    while (!input);
-
-                    return userOperator;
+                    Console.WriteLine("Please input a mathematical operator (+, -, * or /)");
+                    userOperator = Console.ReadLine();
+                    input = Calculator.OperatorValues.Contains(userOperator);
                 }
+                while (!input);
+
+                return userOperator;
             }
         }
 
