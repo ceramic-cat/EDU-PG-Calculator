@@ -20,7 +20,10 @@ namespace Calculator
             while (keepRunning)
             {
                 Console.WriteLine("\tWelcome to the calculator.");
-                float userFirstNumber = UserNumberInput();
+                Console.WriteLine("\n\tPlease enter a number:");
+
+                float userFirstNumber = float.Parse(Console.ReadLine());
+
 
                 Console.WriteLine("\n\tPlease enter a number:");
 
@@ -38,8 +41,7 @@ namespace Calculator
                 string userInput = Console.ReadLine().ToLower();
 
                 if (userInput == "klar")
-                {
-                    keepRunning = false;
+                { keepRunning = false;
                     Console.WriteLine("Hejdå!");
                 }
                 Console.Clear();
@@ -61,23 +63,6 @@ namespace Calculator
 
         }
 
-        private static float UserNumberInput()
-        {
-            Console.WriteLine("\n\tPlease enter a number:");
-            bool loop = true;
-            float ball = 0;
-            while (loop)
-            {
-                if (float.TryParse(Console.ReadLine(), out float value))
-                { return value; }
-                else
-                {
-                    Console.WriteLine("Invalid input. Only input numbers: ");
-                }
-                //float userFirstNumber = float.Parse(Console.ReadLine());
-            }
-            return 0;
-        }
 
         class Calculator
         {
@@ -114,13 +99,13 @@ namespace Calculator
                 string hello = calculator.Operator;
                 if (OperatorValues.Contains(hello))
                 {
-                    switch (calculator.Operator)
-                    {
+                    switch(calculator.Operator)
+                        {
                         case "+": return calculator.FirstValue + calculator.SecondValue;
                         case "-": return calculator.FirstValue - calculator.SecondValue;
                         case "*": return calculator.FirstValue * calculator.SecondValue;
                         case "/": return calculator.SecondValue / calculator.FirstValue;
-                        default: return 0;
+                            default: return 0;
                     }
 
                 }
