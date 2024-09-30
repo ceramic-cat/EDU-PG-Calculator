@@ -23,94 +23,68 @@ namespace Calculator
             while (keepRunning)
             {
                 Console.WriteLine("Welcome to the calculator.");
-                Console.WriteLine("Please enter a number:");
 
                 float userFirstNumber;
                 float userSecondNumber;
                 string userOperator;
 
-
-
-                userFirstNumber = getNumber();
-                break;
-
-                // Getting first value
-                if (float.TryParse(Console.ReadLine(), out userFirstNumber))
+                while (keepRunning)
                 {
-                    Console.WriteLine("Please enter a number: ");
 
-                    if (float.TryParse(Console.ReadLine(), out userSecondNumber))
+                    userFirstNumber = GetNumber();
+                    userSecondNumber = GetNumber();
+                    userOperator = GetOperator();
+
+                    Calculator userCalculator = new Calculator(userFirstNumber, userSecondNumber, userOperator);
+
+                    Console.WriteLine($"The answer to your query is {userCalculator.DoMath()}.");
+
+                    Console.WriteLine("If you want to terminate the application, write EXIT.");
+                    Console.WriteLine("To try again, write anything else.");
+                    string userInput = Console.ReadLine().ToLower();
+
+                    if (userInput == "exit")
                     {
-                        Console.WriteLine("What operator would you like to use?");
-                        userOperator = Console.ReadLine();
-
-                        // Control the input for choice of operator.
-                        if (Calculator.OperatorValues.Contains(userOperator))
-                        {
-                            // Make a calculator
-                            Calculator userCalculator = new Calculator(userSecondNumber, userFirstNumber, userOperator);
-
-                            Console.WriteLine($"The answer to your query is {userCalculator.DoMath(userCalculator)}");
-                        }
-                        else
-                        {
-                            Console.WriteLine("Please only use valid operators: +, -, * or /.");
-                        }
-
+                        keepRunning = false;
+                        Console.WriteLine("Good bye!");
                     }
-                    else Console.WriteLine("Please only use numbers.");
-
+                    Console.Clear();
                 }
-                else
-                {
-                    Console.WriteLine("Please only use numbers.");
-                }
-                Console.WriteLine("If you want to terminate the application, write exit.");
-                Console.WriteLine("To try again, write anything else.");
-                string userInput = Console.ReadLine().ToLower();
-
-                if (userInput == "exit")
-                {
-                    keepRunning = false;
-                    Console.WriteLine("Good bye!");
-                }
-                Console.Clear();
 
 
-
-                float getNumber()
+                float GetNumber()
                 {
                     float number = 0;
                     bool input = false;
 
                     do
                     {
-                        Console.WriteLine("ge mmig en siffra");
+                        Console.WriteLine("Please input a number: ");
                         input = float.TryParse(Console.ReadLine(), out number);
-                        //if (input)
-                        //    number = value;
 
                     }
                     while (!input);
 
                     return number;
                 }
+
+
+                string GetOperator()
+                {
+                    string userOperator;
+                    bool input = false;
+
+                    do
+                    {
+                        Console.WriteLine("Please input a mathematical operator (+, -, * or /)");
+                        userOperator = Console.ReadLine();
+                        input = Calculator.OperatorValues.Contains(userOperator);
+                    }
+                    while (!input);
+
+                    return userOperator;
+                }
             }
-
-
-
-
-
-            // TODO
-            // Klass som gör matematik
-
-            // Om jag orkar, gör med valbar RPN/normal style ;)
-
-            // Möjliga operationer:
-            // +, -, *, /, %, 
-
-            // Metod för inmatning av siffror (floats?) med kontroll av att det är faktiska siffror
-            // Metod för inmatning av operationer, valbara med char? Eller ur meny?
 
 
         }
@@ -118,26 +92,13 @@ namespace Calculator
 
         class Calculator
         {
-            //private float _firstValue;
-            //private float _secondValue;
-            //private char _operator;
 
             public float FirstValue { get; private set; }
             public float SecondValue { get; private set; }
             public string Operator { get; private set; }
 
             public static List<string> OperatorValues { get; private set; } = new List<string> { "+", "-", "*", "/" };
-            //public Calculator(string operatorValue)
-            //{
 
-            //}
-
-            //public Calculator(float firstValue, string operatorValue, float secondValue)
-            //{
-            //    FirstValue = firstValue;
-            //    SecondValue = secondValue;
-            //    Operator = operatorValue;
-            //}
 
             public Calculator(float firstValue, float secondValue, string operatorValue)
             {
@@ -146,31 +107,20 @@ namespace Calculator
                 Operator = operatorValue;
             }
 
-            public float DoMath(Calculator calculator)
+            public float DoMath()
             {
-                string hello = calculator.Operator;
-                if (OperatorValues.Contains(hello))
+                switch (this.Operator)
                 {
-                    switch (calculator.Operator)
-                    {
-                        case "+": return calculator.FirstValue + calculator.SecondValue;
-                        case "-": return calculator.FirstValue - calculator.SecondValue;
-                        case "*": return calculator.FirstValue * calculator.SecondValue;
-                        case "/": return calculator.SecondValue / calculator.FirstValue;
-                        default: return 0;
-                    }
-
+                    case "+": return this.FirstValue + this.SecondValue;
+                    case "-": return this.FirstValue - this.SecondValue;
+                    case "*": return this.FirstValue * this.SecondValue;
+                    case "/": return this.FirstValue / this.SecondValue;
+                    default: return 0;
                 }
-                else
-                { return 0; }
+
             }
 
         }
-
-
     }
-
-
-
 
 }
